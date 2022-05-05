@@ -21,11 +21,26 @@ function ShoppingList () {
             {plant.name}
             {plant.isOnSale && <div className='lmj-sales'>Soldes</div>}
             {plant.isBestSale && <span className='lmj-BestSelling'>🔥</span>}
+            <CareScale careType='water' scaleValue={plant.water} />
+            <CareScale careType='light' scaleValue={plant.light} />
           </li>
         ))}
       </ul>
     </div>
   )
 }
-
 export default ShoppingList
+
+function CareScale(props) {
+  const scaleValue = props.scaleValue
+
+  const range = [1, 2, 3]
+
+  return (
+      <div>
+          {range.map((rangeElem) =>
+              scaleValue >= rangeElem ? <span key={rangeElem.toString()}>☀️</span> : null
+          )}
+      </div>
+  )
+}
